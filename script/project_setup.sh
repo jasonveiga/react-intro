@@ -61,7 +61,54 @@ if (module.hot) {
 }
 EOF
 
+# Some eslint and prettier setup to help us out
+cat > .eslintrc << EOF
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+    jest: true
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2018,
+    sourceType: "module"
+  },
+  plugins: ["react"],
+  rules: {
+    "no-console": 0,
+    indent: ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    quotes: ["error", "single"],
+    semi: ["error", "never"],
+    "prettier/prettier": [
+      {
+        singleQuote: false
+      }
+    ]
+  }
+}
+EOF
+
+cat > .prettierrc.json << EOF
+{
+   "singleQuote": false
+}
+EOF
+
 # And a little reminder to commit these upgrades
 echo "Don't forget to commit your changes! You can use:"
-echo "git add .gitignore README.md package.json public/ src/ yarn.lock config-overrides.js"
+echo "git add .gitignore README.md package.json public/ src/ yarn.lock config-overrides.js .eslintrc .prettierrc.json"
 echo "git commit -a -m 'project created'"
