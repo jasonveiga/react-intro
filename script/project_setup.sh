@@ -1,19 +1,17 @@
 #!/bin/sh
 
 # Create the application
-npx create-react-app react-training
+npx create-react-app my-app
 
 # Set up git repo
-cd react-training
+cd my-app
 git init
 
 # Install some deps for the application, plus for development to make your
 # life easier
-npm i --save bootstrap reactstrap
-
 npm i --save-dev eslint eslint-config-prettier eslint-plugin-prettier \
     prettier prettier-eslint react-app-rewire-hot-loader react-app-rewired \
-    react-hot-loader
+    react-hot-loader babel-eslint
 
 # Replace react-scripts with react-app-rewired to enable hot module
 # reloading (aka HMR)
@@ -62,7 +60,7 @@ if (module.hot) {
 EOF
 
 # Some eslint and prettier setup to help us out
-cat > .eslintrc << EOF
+cat > .eslintrc.js << EOF
 module.exports = {
   env: {
     browser: true,
@@ -79,11 +77,11 @@ module.exports = {
     "prettier/react",
     "prettier/standard"
   ],
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 2018,
     sourceType: "module"
   },
   plugins: ["react"],
@@ -94,6 +92,7 @@ module.exports = {
     quotes: ["error", "single"],
     semi: ["error", "never"],
     "prettier/prettier": [
+      "error",
       {
         singleQuote: false
       }
