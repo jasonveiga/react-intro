@@ -26,7 +26,7 @@ export default class Presentation extends Component {
     if (ref) {
       this.modules[i] = ref
 
-      if (this.modules.filter(m => m !== null).length) {
+      if (!this.modules.filter(m => m === null).length) {
         this.props.updateModules(this.modules.map(m => m.props.name))
       }
     }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment, Children } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Navbar,
   NavbarBrand,
@@ -16,10 +16,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForward } from '@fortawesome/free-solid-svg-icons/faForward'
 import { faFastForward } from '@fortawesome/free-solid-svg-icons/faFastForward'
-import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward'
+// import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward'
 import { faBackward } from '@fortawesome/free-solid-svg-icons/faBackward'
 import { faFastBackward } from '@fortawesome/free-solid-svg-icons/faFastBackward'
-import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
+// import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { PropTypes } from 'prop-types'
 
 export default class Player extends Component {
@@ -142,13 +142,28 @@ export default class Player extends Component {
       slide: this.state.slide
     })
 
-    var moduleNames = this.state.modules.map(m => (
-      <DropdownItem key={m}>{m}</DropdownItem>
+    var moduleNames = this.state.modules.map((m, i) => (
+      <DropdownItem key={m} onClick={() => this.gotoModule(i)}>
+        {m}
+      </DropdownItem>
     ))
 
-    var slideNames = this.state.slides.map(s => (
-      <DropdownItem key={s}>{s}</DropdownItem>
+    var slideNames = this.state.slides.map((s, i) => (
+      <DropdownItem key={s} onClick={() => this.gotoSlide(i)}>
+        {s}
+      </DropdownItem>
     ))
+
+    // <NavItem>
+    //   <NavLink>
+    //     <FontAwesomeIcon title="Last step" icon={faStepBackward} />
+    //   </NavLink>
+    // </NavItem>
+    // <NavItem>
+    //   <NavLink>
+    //     <FontAwesomeIcon title="Advance" icon={faPlay} />
+    //   </NavLink>
+    // </NavItem>
 
     return (
       <Fragment>
@@ -178,16 +193,7 @@ export default class Player extends Component {
                   <FontAwesomeIcon title="Previous slide" icon={faBackward} />
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink>
-                  <FontAwesomeIcon title="Last step" icon={faStepBackward} />
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink>
-                  <FontAwesomeIcon title="Advance" icon={faPlay} />
-                </NavLink>
-              </NavItem>
+
               <NavItem>
                 <NavLink
                   onClick={this.clickNextSlide.bind(this)}

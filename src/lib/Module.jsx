@@ -25,7 +25,7 @@ export default class Module extends Component {
     if (slide) {
       this.slideRefs[i] = slide
 
-      if (this.slideRefs.filter(s => s !== null).length) {
+      if (!this.slideRefs.filter(s => s === null).length) {
         this.props.updateSlides(this.slideRefs.map(s => s.props.name))
       }
     }
