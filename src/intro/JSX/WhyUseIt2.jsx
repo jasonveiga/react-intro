@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import A from '../../A'
 
 export default function WhyUseIt2(props) {
   return (
@@ -21,21 +22,25 @@ export default function WhyUseIt2(props) {
           toolchains)
         </li>
       </ul>
-      <blockquote className="blockquote">
-        <p>
-          React embraces the fact that rendering logic is inherently coupled
-          with other UI logic: how events are handled, how the state changes
-          over time, and how the data is prepared for display.
-        </p>
-
-        <p>
-          Instead of artificially separating technologies by putting markup and
-          logic in separate files, React separates concerns with loosely coupled
-          units called “components” that contain both. We will come back to
-          components in a further section, but if you’re not yet comfortable
-          putting markup in JS, this talk might convince you otherwise.
-        </p>
-      </blockquote>
+      <p>Arguments for JSX:</p>
+      <ul>
+        <li>
+          UI code split across fewer files (less separate JS/template code)
+        </li>
+        <li>
+          Compiles to real JavaScript, doesn&apos;t depend on parsing the
+          template
+        </li>
+        <li>
+          Fairly well-supported toolchain, esp. when using{' '}
+          <code>create-react-app</code>, and widely available editor/IDE plugins
+        </li>
+        <li>
+          Lots of components, plus bindings between React & other packages, e.g.{' '}
+          <A href="https://reactstrap.github.io/">reactstrap</A> for{' '}
+          <A href="https://getbootstrap.com/">Boostrap</A>
+        </li>
+      </ul>
     </Fragment>
   )
 }
