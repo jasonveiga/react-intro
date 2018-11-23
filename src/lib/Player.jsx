@@ -40,59 +40,26 @@ export default class Player extends Component {
 
     this.state = {
       deck: null,
-      firstModule: true,
-      lastModule: true,
-      firstSlide: true,
-      lastSlide: true,
-      module: this.props.module || '',
       moduleIndex: 0,
-      slide: this.props.slide || '',
       slideIndex: 0,
       step: this.props.step || 0,
       steps: this.props.steps || [],
       modules: [],
+      slides: [],
       numSteps: 1,
       presentationMode: false,
-      presentation: null,
-      slides: []
+      presentation: null
     }
   }
 
-  updateModules(modules) {
-    var s = { modules: modules }
+  updatePresentation(presentation) {
+    let modules = presentation.getModuleNames()
+    let slides = presentation.getSlideNames()
+    let modulesDifferent = modules.filter((m, i) => m !== this.state.modules[i])
+    let slidesDifferent = slides.filter((m, i) => m !== this.state.slides[i])
 
-    if (!this.state.module) {
-      s.module = modules[0]
-      s.moduleIndex = 0
-      s.firstModule = true
-      s.lastModule = modules.length < 2
-    }
-
-    if (
-      !this.state.module ||
-      this.state.modules.length !== modules.length ||
-      this.state.modules.filter((m, i) => m !== this.state.modules[i]).length
-    ) {
-      this.setState(s)
-    }
-  }
-
-  updateSlides(slides) {
-    var s = { slides: slides }
-
-    if (!this.state.slide || !slides.includes(this.state.slide)) {
-      s.slide = slides[0]
-      s.slideIndex = 0
-      s.firstSlide = true
-      s.lastSlide = slides.length < 2
-    }
-
-    if (
-      !this.state.slide ||
-      this.state.slides.length !== slides.length ||
-      this.state.slides.filter((m, i) => m !== this.state.slides[i]).length
-    ) {
-      this.setState(s)
+    if (modulesDifferent.length || slidesDifferent.length) {
+      this.setState({ modules, slides })
     }
   }
 
@@ -100,8 +67,7 @@ export default class Player extends Component {
     this.setState({
       moduleIndex: moduleIndex,
       module: this.state.modules[moduleIndex],
-      firstModule: moduleIndex === 0,
-      lastModule: moduleIndex === this.state.modules.length - 1
+      slideIndex: 0
     })
   }
 
@@ -117,10 +83,7 @@ export default class Player extends Component {
 
   gotoSlide(slideIndex) {
     this.setState({
-      slideIndex: slideIndex,
-      slide: this.state.slides[slideIndex],
-      firstSlide: slideIndex === 0,
-      lastSlide: slideIndex === this.state.slides.length - 1
+      slideIndex: slideIndex
     })
   }
 
@@ -136,10 +99,9 @@ export default class Player extends Component {
 
   render() {
     var presentation = React.cloneElement(this.props.children, {
-      updateModules: this.updateModules.bind(this),
-      updateSlides: this.updateSlides.bind(this),
-      module: this.state.module,
-      slide: this.state.slide
+      updatePresentation: this.updatePresentation.bind(this),
+      module: this.state.moduleIndex,
+      slide: this.state.slideIndex
     })
 
     var moduleNames = this.state.modules.map((m, i) => (
@@ -148,11 +110,18 @@ export default class Player extends Component {
       </DropdownItem>
     ))
 
-    var slideNames = this.state.slides.map((s, i) => (
+    let slideNames = this.state.slides.map((s, i) => (
       <DropdownItem key={s} onClick={() => this.gotoSlide(i)}>
         {s}
       </DropdownItem>
     ))
+
+    let module = this.state.modules[this.state.moduleIndex]
+    let slide = this.state.slides[this.state.slideIndex]
+    let firstModule = this.state.moduleIndex === 0
+    let lastModule = this.state.moduleIndex >= this.state.modules.length - 1
+    let firstSlide = this.state.slideIndex === 0
+    let lastSlide = this.state.slideIndex >= this.state.slides.length - 1
 
     // <NavItem>
     //   <NavLink>
@@ -168,16 +137,14 @@ export default class Player extends Component {
     return (
       <Fragment>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">{`${this.state.module}: ${
-            this.state.slide
-          }`}</NavbarBrand>
+          <NavbarBrand href="/">{`${module}: ${slide}`}</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink
                   onClick={this.clickPreviousModule.bind(this)}
-                  disabled={this.state.firstModule}
+                  disabled={firstModule}
                 >
                   <FontAwesomeIcon
                     title="Previous module"
@@ -188,7 +155,7 @@ export default class Player extends Component {
               <NavItem>
                 <NavLink
                   onClick={this.clickPreviousSlide.bind(this)}
-                  disabled={this.state.firstSlide}
+                  disabled={firstSlide}
                 >
                   <FontAwesomeIcon title="Previous slide" icon={faBackward} />
                 </NavLink>
@@ -197,7 +164,7 @@ export default class Player extends Component {
               <NavItem>
                 <NavLink
                   onClick={this.clickNextSlide.bind(this)}
-                  disabled={this.state.lastSlide}
+                  disabled={lastSlide}
                 >
                   <FontAwesomeIcon title="Next slide" icon={faForward} />
                 </NavLink>
@@ -205,7 +172,7 @@ export default class Player extends Component {
               <NavItem>
                 <NavLink
                   onClick={this.clickNextModule.bind(this)}
-                  disabled={this.state.lastModule}
+                  disabled={lastModule}
                 >
                   <FontAwesomeIcon title="Next module" icon={faFastForward} />
                 </NavLink>

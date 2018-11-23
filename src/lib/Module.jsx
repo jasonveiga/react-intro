@@ -8,8 +8,8 @@ export default class Module extends Component {
       PropTypes.node
     ]),
     name: PropTypes.string.isRequired,
-    module: PropTypes.string,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    displayed: PropTypes.bool,
+    slide: PropTypes.number,
     step: PropTypes.number,
     steps: PropTypes.arrayOf(PropTypes.number),
     updateSlides: PropTypes.func
@@ -21,32 +21,41 @@ export default class Module extends Component {
     steps: []
   }
 
-  updateSlideRef(slide, i) {
-    if (slide) {
-      this.slideRefs[i] = slide
+  constructor(props) {
+    super(props)
+    this.slides = []
+  }
 
-      if (!this.slideRefs.filter(s => s === null).length) {
-        this.props.updateSlides(this.slideRefs.map(s => s.props.name))
-      }
-    }
+  updateSlideRef(slide, i, arr) {
+    this.slides[i] = slide
+    this.props.updateSlides(this.getSlides())
+  }
+
+  getSlides() {
+    return this.slides.filter(s => s !== null)
+  }
+
+  slidesReady() {
+    return (
+      this.getSlides().length === Children.toArray(this.props.children).length
+    )
+  }
+
+  getSlideNames() {
+    return this.getSlides().map(s => s.props.name)
   }
 
   render() {
-    this.slideRefs = Children.toArray(this.props.children).map(() => null)
-
-    var slides = Children.toArray(this.props.children).map((slide, i) =>
+    var slides = Children.toArray(this.props.children).map((slide, i, arr) =>
       React.cloneElement(slide, {
         ref: s => {
-          this.updateSlideRef(s, i)
+          this.updateSlideRef(s, i, arr)
         },
+        displayed: this.props.displayed && this.props.slide === i,
         slide: this.props.slide
       })
     )
 
-    if (this.props.module !== this.props.name) {
-      return null
-    } else {
-      return <Fragment>{slides}</Fragment>
-    }
+    return <Fragment>{slides}</Fragment>
   }
 }

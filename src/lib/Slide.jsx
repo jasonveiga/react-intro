@@ -9,8 +9,8 @@ export default class Slide extends Component {
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ]),
+    displayed: PropTypes.bool,
     name: PropTypes.string.isRequired,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     step: PropTypes.number,
     steps: PropTypes.arrayOf(PropTypes.number)
   }
@@ -36,10 +36,8 @@ export default class Slide extends Component {
   }
 
   render() {
-    if (this.props.slide !== this.props.name) {
-      return null
-    }
-
-    return <Fragment>{this.props.children}</Fragment>
+    return this.props.displayed ? (
+      <Fragment>{this.props.children}</Fragment>
+    ) : null
   }
 }

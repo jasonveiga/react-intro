@@ -8,12 +8,11 @@ export default class Presentation extends Component {
       PropTypes.node
     ]),
     name: PropTypes.string.isRequired,
-    module: PropTypes.string,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    module: PropTypes.number,
+    slide: PropTypes.number,
     step: PropTypes.number,
     steps: PropTypes.arrayOf(PropTypes.number),
-    updateModules: PropTypes.func,
-    updateSlides: PropTypes.func
+    updatePresentation: PropTypes.func
   }
 
   static defaultProps = {
@@ -22,29 +21,64 @@ export default class Presentation extends Component {
     steps: []
   }
 
-  updateModuleRef(ref, i) {
-    if (ref) {
-      this.modules[i] = ref
+  constructor(props) {
+    super(props)
+    this.modules = []
+  }
 
-      if (!this.modules.filter(m => m === null).length) {
-        this.props.updateModules(this.modules.map(m => m.props.name))
-      }
+  updateModuleRef(ref, i, arr) {
+    this.modules[i] = ref
+    this.updatePresentation()
+  }
+
+  getModules() {
+    return this.modules.filter(m => m).filter(m => m.slidesReady())
+  }
+
+  updateSlides() {
+    this.updatePresentation()
+  }
+
+  updatePresentation() {
+    if (this.modulesReady()) {
+      this.props.updatePresentation(this)
     }
   }
 
+  modulesReady() {
+    return (
+      this.getModules().length === Children.toArray(this.props.children).length
+    )
+  }
+
+  getModuleNames() {
+    return this.getModules().map(m => m.props.name)
+  }
+
+  getModule() {
+    return this.getModules()[this.props.module]
+  }
+
+  getSlides() {
+    return this.getModule().getSlides()
+  }
+
+  getSlideNames() {
+    return this.getModule().getSlideNames()
+  }
+
   render() {
-    var modules = Children.toArray(this.props.children).map((m, i) =>
+    var modules = Children.toArray(this.props.children).map((m, i, modules) =>
       React.cloneElement(m, {
         ref: module => {
-          this.updateModuleRef(module, i)
+          this.updateModuleRef(module, i, modules)
         },
-        module: this.props.module,
+        displayed: this.props.module === i,
         slide: this.props.slide,
-        updateSlides: this.props.updateSlides
+        updateSlides: () => this.updateSlides()
       })
     )
 
-    this.modules = modules.map(m => null)
     return <Fragment>{modules}</Fragment>
   }
 }
