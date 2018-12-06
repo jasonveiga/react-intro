@@ -5,6 +5,8 @@ import Prerequisites from './intro/Prerequisites'
 import WhatIsIt from './JSX/WhatIsIt'
 import WhyUseIt from './JSX/WhyUseIt'
 import WhyUseIt2 from './JSX/WhyUseIt2'
+import Expressions from './JSX/Expressions'
+import componentsModule from './Components'
 import { Player, Presentation, Module, Slide } from '../lib'
 
 export default function IntroPresentation(props) {
@@ -32,7 +34,11 @@ export default function IntroPresentation(props) {
           <Slide name="Why Use It (cont.)">
             <WhyUseIt2 />
           </Slide>
+          <Slide name="Expressions">
+            <Expressions />
+          </Slide>
         </Module>
+        {componentsModule()}
       </Presentation>
     </Player>
   )
