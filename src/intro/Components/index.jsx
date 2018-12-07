@@ -4,7 +4,10 @@ import Intro from './Intro'
 import Functions from './Functions'
 import Classes from './Classes'
 import State from './State'
+import StateUpdates from './StateUpdates'
 import Events from './Events'
+import HandlerScope from './HandlerScope'
+import ComponentEventHandlers from './ComponentEventHandlers'
 
 export default function getModule() {
   return (
@@ -21,8 +24,17 @@ export default function getModule() {
       <Slide name="State">
         <State />
       </Slide>
+      <Slide name="State Updates">
+        <StateUpdates />
+      </Slide>
       <Slide name="Events">
         <Events />
+      </Slide>
+      <Slide name="Handler Scope">
+        <HandlerScope />
+      </Slide>
+      <Slide name="Component Event Handlers">
+        <ComponentEventHandlers />
       </Slide>
     </Module>
   )

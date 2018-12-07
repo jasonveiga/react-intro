@@ -24,8 +24,8 @@ export default function State(props) {
       <p>
         When you need to maintain state in a component, e.g. a ticking clock, or
         a button that toggles something, you can keep state in special object,{' '}
-        <code>this.state</code>. This state should be created by extending the{' '}
-        <code>React.Component</code> <code>constructor</code>.
+        <code>this.state</code>. This state should be intialized by extending
+        the <code>React.Component</code> <code>constructor</code>.
       </p>
       <JsxCode code={snippet} />
     </Fragment>
