@@ -16,7 +16,7 @@ const snippet = `function MyComponent({ onLogin, onUsernameChange, username }) {
 export default function ComponentEventHandlers(props) {
   return (
     <Fragment>
-      <h1>Events In Custom Components</h1>
+      <h1>Events In Components</h1>
       <p>
         Events in custom components are typically handled in the same fashion,
         where you pass a function in the props and it&apos;s called by the

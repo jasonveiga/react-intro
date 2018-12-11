@@ -8,6 +8,8 @@ import StateUpdates from './StateUpdates'
 import Events from './Events'
 import HandlerScope from './HandlerScope'
 import ComponentEventHandlers from './ComponentEventHandlers'
+import ConditionalRendering from './ConditionalRendering'
+import ComponentVariables from './ComponentVariables'
 
 export default function getModule() {
   return (
@@ -35,6 +37,12 @@ export default function getModule() {
       </Slide>
       <Slide name="Component Event Handlers">
         <ComponentEventHandlers />
+      </Slide>
+      <Slide name="Conditional Rendering">
+        <ConditionalRendering />
+      </Slide>
+      <Slide name="Component Variables">
+        <ComponentVariables />
       </Slide>
     </Module>
   )
