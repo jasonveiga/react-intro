@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Row, Col } from 'reactstrap'
 import JsxCode from '../../lib/JsxCode'
 
 const snippet = `class Clock extends React.Component {
@@ -21,13 +22,20 @@ export default function State(props) {
   return (
     <Fragment>
       <h1>Component State</h1>
-      <p>
-        When you need to maintain state in a component, e.g. a ticking clock, or
-        a button that toggles something, you can keep state in special object,{' '}
-        <code>this.state</code>. This state should be intialized by extending
-        the <code>React.Component</code> <code>constructor</code>.
-      </p>
-      <JsxCode code={snippet} />
+      <Row>
+        <Col md={4}>
+          <p>
+            When you need to maintain state in a component, e.g. a ticking
+            clock, or a button that toggles something, you keep state in a
+            special object, <code>this.state</code>. This state should be
+            intialized by extending the <code>React.Component#constructor</code>
+            .
+          </p>
+        </Col>
+        <Col md={6}>
+          <JsxCode code={snippet} />
+        </Col>
+      </Row>
     </Fragment>
   )
 }

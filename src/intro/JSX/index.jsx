@@ -5,6 +5,7 @@ import WhyUseIt from './WhyUseIt'
 import WhyUseIt2 from './WhyUseIt2'
 import Expressions from './Expressions'
 import ReactWithoutJsx from './ReactWithoutJsx'
+import Rendering from './Rendering'
 
 export default function getModule() {
   return (
@@ -23,6 +24,9 @@ export default function getModule() {
       </Slide>
       <Slide name="React Without JSX">
         <ReactWithoutJsx />
+      </Slide>
+      <Slide name="Rendering Elements">
+        <Rendering />
       </Slide>
     </Module>
   )

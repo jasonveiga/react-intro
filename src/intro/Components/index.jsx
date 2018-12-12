@@ -10,6 +10,8 @@ import HandlerScope from './HandlerScope'
 import ComponentEventHandlers from './ComponentEventHandlers'
 import ConditionalRendering from './ConditionalRendering'
 import ComponentVariables from './ComponentVariables'
+import ArraysOfComponents from './ArraysOfComponents'
+import Forms from './Forms'
 
 export default function getModule() {
   return (
@@ -43,6 +45,12 @@ export default function getModule() {
       </Slide>
       <Slide name="Component Variables">
         <ComponentVariables />
+      </Slide>
+      <Slide name="Arrays of Components">
+        <ArraysOfComponents />
+      </Slide>
+      <Slide name="Forms">
+        <Forms />
       </Slide>
     </Module>
   )
