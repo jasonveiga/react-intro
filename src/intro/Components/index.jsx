@@ -12,6 +12,9 @@ import ConditionalRendering from './ConditionalRendering'
 import ComponentVariables from './ComponentVariables'
 import ArraysOfComponents from './ArraysOfComponents'
 import Forms from './Forms'
+import Children from './Children'
+import ComponentsInProps from './ComponentsInProps'
+import Specialization from './Specialization'
 
 export default function getModule() {
   return (
@@ -51,6 +54,15 @@ export default function getModule() {
       </Slide>
       <Slide name="Forms">
         <Forms />
+      </Slide>
+      <Slide name="Children">
+        <Children />
+      </Slide>
+      <Slide name="Components in Props">
+        <ComponentsInProps />
+      </Slide>
+      <Slide name="Specialization">
+        <Specialization />
       </Slide>
     </Module>
   )
