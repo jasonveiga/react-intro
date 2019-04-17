@@ -12,8 +12,9 @@ export default function RecommendedSoftware(props) {
             react-app-rewired
           </A>
           , allows you to control your webpack configuration without completely
-          abandoning the React-provided configuration (a process known as
-          ejecting). Can also get you hot module reloading.
+          abandoning the structure provided by create-react-app (a process known
+          as ejecting). This cal also get you hot module reloading, a useful
+          feature during development.
           <ul>
             <li>
               Run <code>npm i --save-dev react-app-rewired</code>
@@ -22,8 +23,8 @@ export default function RecommendedSoftware(props) {
         </li>
         <li>
           <A href="https://prettier.io/">Prettier</A>, an opinionated code
-          formatter, integrates with eslint (used by CRA), as well as many
-          editors
+          formatter, which integrates with eslint (already used by CRA), as well
+          as many code editors/IDEs
           <ul>
             <li>
               <A href="https://medium.com/quick-code/how-to-integrate-eslint-prettier-in-react-6efbd206d5c4">
@@ -45,6 +46,15 @@ export default function RecommendedSoftware(props) {
             <li>
               <A href="https://github.com/mxw/vim-jsx">JSX support for Vim</A>
             </li>
+            <li>
+              <A href="https://github.com/Valloric/YouCompleteMe">
+                YouCompleteMe
+              </A>
+              , a code-suggestion engine for Vim that can use{' '}
+              <A href="https://ternjs.net/">Tern</A> for offering JavaScript
+              completions (requires configuration in your project, i.e. a{' '}
+              <code>.tern-project</code> file)
+            </li>
           </ul>
         </li>
         <li>
@@ -54,10 +64,18 @@ export default function RecommendedSoftware(props) {
               <A href="https://atom.io/packages/prettier-atom">prettier-atom</A>
             </li>
             <li>
+              <A href="https://atom.io/packages/linter-eslint">linter-eslint</A>
+              , will highlight errors and style recommendations as you code
+            </li>
+            <li>
               <A href="https://atom.io/packages/language-babel">
                 language-babel
               </A>
               , replaces language-javascript and other JSX plugins
+            </li>
+            <li>
+              <A href="https://atom.io/packages/atom-ternjs">Ternjs plugin</A>{' '}
+              for atom
             </li>
           </ul>
         </li>

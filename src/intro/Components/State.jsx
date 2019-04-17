@@ -29,7 +29,11 @@ export default function State(props) {
             clock, or a button that toggles something, you keep state in a
             special object, <code>this.state</code>. This state should be
             intialized by extending the <code>React.Component#constructor</code>
-            .
+            .{' '}
+            <strong>
+              Don&apos;t forget to call <code>super(props)</code> in your
+              constructor!
+            </strong>
           </p>
         </Col>
         <Col md={6}>

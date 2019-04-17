@@ -22,8 +22,10 @@ export default function ReactWithoutJsx(props) {
       <p>
         It&apos;s possible to use React with JSX, although the results will be
         arguably less readable as you compose large components. Simply use{' '}
-        <code>createElement</code> from the react package. (This is what your
-        JSX code will compile to behind the scenes.)
+        <code>createElement</code> from the react package.{' '}
+        <strong>
+          This is what your JSX code will compile to behind the scenes.
+        </strong>
       </p>
       <Row>
         <Col md={5}>

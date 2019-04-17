@@ -7,10 +7,19 @@ const snippet2 = `<div id="root"></div>`
 const snippet3 = `const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));`
 
+const htmlSnippet1 = '<div></div>'
+const htmlSnippet2 = '<p></p>'
+
 export default function Rendering(props) {
   return (
     <Fragment>
       <h1>Rendering Elements</h1>
+      <p>
+        Elements are the smallest building blocks of React apps. They&apos;re
+        analogous to plain DOM elements, like <code>{htmlSnippet1}</code> and{' '}
+        <code>{htmlSnippet2}</code>. Don&apos;t confuse them with components,
+        which are higer-level building blocks in React.
+      </p>
       <Row>
         <Col md={4}>
           <p>An element describes what you want to see on screen:</p>

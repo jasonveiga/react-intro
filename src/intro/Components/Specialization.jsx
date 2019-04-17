@@ -40,7 +40,7 @@ export default function Specialization(props) {
             <strong>Note:</strong> inheritance is still absolutely possible in
             React. I&apos;ve used it to create common base classes for
             components that automatically bind certain class methods, and
-            perform bookkeeping for debugging purposes.
+            perform bookkeeping for debugging/benchmarking purposes.
           </p>
         </Col>
         <Col md={6}>

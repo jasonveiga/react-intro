@@ -6,9 +6,11 @@ export default function Intro(props) {
     <Fragment>
       <h1>Components</h1>
       <p>
-        Components are the building blocks of your UI. In JSX, your components
-        are identified using the tag in the markup. This example shows JSX that
-        renders a component called <code>Welcome</code>
+        Components are the reusable pieces of your UI. In JSX, your components
+        are identified using the component name (class or function) as the tag
+        name in the JSX markup. This example shows JSX that renders a component
+        called <code>Welcome</code>. For this to work, you must define a class
+        or function with this name that describes how to render it.
       </p>
       <JsxCode code={`<Welcome name="me" />`} />
       <p>

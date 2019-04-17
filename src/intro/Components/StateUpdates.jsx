@@ -65,11 +65,12 @@ export default function StateUpdates(props) {
           <p>
             <strong>Never modify state directly</strong>, e.g. with{' '}
             <code>this.state.counter = 0</code>. React won&apos;t know the state
-            was updated. Use <code>this.setState</code> instead.{' '}
-            <code>setState</code> accepts an object with state updates, but note
-            that state updates are asynchronous, so use the second form that
-            accepts an update function if your new state depends on previous
-            values. Updates are merged into the current state.
+            was updated, and the component won&apos;t re-render. Use{' '}
+            <code>this.setState</code> instead. <code>setState</code> accepts an
+            object with state updates, but note that state updates are
+            asynchronous, so use the second form that accepts an update function
+            if your new state depends on previous values. Updates are merged
+            into the current state.
           </p>
           <h3>Live example:</h3>
           <Counter />

@@ -19,7 +19,8 @@ export default function WhyUseIt2(props) {
         </li>
         <li>
           It requires additional tooling to support it (editors, compilation
-          toolchains)
+          plugins like <A href="https://babeljs.io/">Babel</A> [provided out of
+          the box with create-react-app])
         </li>
       </ul>
       <p>Arguments for JSX:</p>

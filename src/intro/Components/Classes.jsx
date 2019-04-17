@@ -17,8 +17,10 @@ export default function Functions(props) {
         to manage the{' '}
         <A href="https://reactjs.org/docs/state-and-lifecycle.html">
           component lifecycle
-        </A>{' '}
-        (more on this later).
+        </A>
+        . Briefly, the component lifecycle can be &quot;hooked&quot; by defining
+        methods in your component classes that are called when the component is
+        set up, torn down, or re-rendered.
       </p>
       <JsxCode code={snippet1} />
       <p>

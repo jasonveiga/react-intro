@@ -19,8 +19,20 @@ export default function RequiredSoftware(props) {
           </A>
           <ul>
             <li>
-              This can be run with <code>npx create-react-app my-app</code> in
+              This can be run using <code>npx create-react-app my-app</code> in
               recent versions of Node.js
+            </li>
+            <li>
+              Otherwise, it&apos;s <code>npm i -g create-react-app</code>{' '}
+              followed by <code>create-react-app my-app</code>
+            </li>
+            <li>
+              Note that <code>create-react-app</code> uses the{' '}
+              <A href="https://yarnpkg.com/en/">yarn</A> package manager by
+              default, rather than npm. You can change this behavior adding the
+              following option: <code>create-react-app my-app --use-npm</code>{' '}
+              (Note that the order of the arguments is important; the app name
+              must come first)
             </li>
           </ul>
         </li>
@@ -29,8 +41,8 @@ export default function RequiredSoftware(props) {
         Out of the box, create-react-app (often referred to as simply CRA),
         gives you several npm scripts for running a development server, and the
         necessary webpack configurations to compile JSX to JavaScript for use in
-        the browser. CRA helpfully generates a README showing how to launch your
-        app.
+        the browser. CRA also helpfully generates a README showing how to launch
+        your app.
       </p>
     </React.Fragment>
   )
